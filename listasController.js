@@ -1,15 +1,16 @@
 // listasController.js
 import Lista from './Lista';
 
-export async function obtenerListas(req, res) {
+app.get('/listas', async (req, res) => {
   try {
     const listas = await Lista.find();
-    res.json(listas);
+    res.render('mostrarLista.handlebars', { listas }); // Pasar los datos de productos como un objeto
   } catch (error) {
     console.error('Error al obtener listas:', error);
-    res.status(500).json({ error: 'Error interno del servidor al obtener listas' });
+    res.status(500).json({ error: 'Error al obtener listas' });
   }
-}
+});
+
 
 export async function obtenerListaPorId(req, res) {
   try {
